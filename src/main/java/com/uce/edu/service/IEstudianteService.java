@@ -1,8 +1,8 @@
-package com.uce.edu.repository;
+package com.uce.edu.service;
 
 import com.uce.edu.repository.modelo.Estudiante;
 
-public interface IEstudianteRepository {
+public interface IEstudianteService {
 
 	// CRUD
 	public Estudiante seleccionar(Integer id);
@@ -12,5 +12,4 @@ public interface IEstudianteRepository {
 	public void actualizar(Estudiante estudiante);
 
 	public void eliminar(Integer id);
-
 }
