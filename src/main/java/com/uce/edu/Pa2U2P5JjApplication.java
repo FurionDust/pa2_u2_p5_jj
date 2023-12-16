@@ -51,10 +51,6 @@ public class Pa2U2P5JjApplication implements CommandLineRunner {
 		
 		System.out.println(alum);
 		
-		Estudiante estu = this.estudianteService.seleccionar(7);
-
-		System.out.println(estu);
-		
 	}
 
 }
