@@ -40,22 +40,41 @@ public class Pa2U2P5JjApplication implements CommandLineRunner {
 		// TODO Auto-generated method stub
 	
 		
-		Ciudadano ciud = new Ciudadano();
-		ciud.setNombre("Alejandro");
-		ciud.setApellido("Jimenez");
+		Ciudadano ciud2 = new Ciudadano();
+		ciud2.setNombre("Alejandro");
+		ciud2.setApellido("Jimenez");
 		
-		this.ciudadanoService.insertar(ciud);
+		this.ciudadanoService.insertar(ciud2);
 		
-		Ciudadano ciud1 = this.ciudadanoService.seleccionar(2);
+		ciud2.setApellido("Loor");
 		
-		System.out.println(ciud);
+		this.ciudadanoService.actualizar(ciud2);
+		
+		Ciudadano ciud3 = this.ciudadanoService.seleccionar(2);
+		
+		System.out.println(ciud3);
+		
+		this.ciudadanoService.eliminar(2);
+		
 		
 		Empleado empl = new Empleado();
 		empl.setFechaIngreso(LocalDateTime.of(2020, 01, 17, 07, 50));
 		empl.setSalario(new BigDecimal(450));
-		empl.setCiudadano(ciud);
+		empl.setCiudadano(ciud2);
 	
 		this.empleadoService.insertar(empl);
+		
+		empl.setSalario(new BigDecimal(500));
+		
+		this.empleadoService.actualizar(empl);
+		
+		Empleado empl1 = this.empleadoService.seleccionar(2);
+		
+		System.out.println(empl1);
+		
+		this.empleadoService.eliminar(2);
+		
+		
 
 	}
 
