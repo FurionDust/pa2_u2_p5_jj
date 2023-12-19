@@ -38,4 +38,10 @@ public class Alumno {
 		this.nombre = nombre;
 	}
 
+	@Override
+	public String toString() {
+		return "Alumno [id=" + id + ", nombre=" + nombre + "]";
+	}
+
+	
 }
