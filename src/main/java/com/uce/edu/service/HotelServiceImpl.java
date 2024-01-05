@@ -13,7 +13,7 @@ public class HotelServiceImpl implements IHotelService{
 	private IHotelRepository hotelRepository;
 	
 	@Override
-	public Hotel seleccionar(Integer id) {
+	public Hotel buscar(Integer id) {
 		// TODO Auto-generated method stub
 		return this.hotelRepository.seleccionar(id);
 	}

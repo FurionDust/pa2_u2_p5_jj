@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.uce.edu.repository.modelo.Habitacion;
 import com.uce.edu.repository.modelo.Hotel;
+import com.uce.edu.service.IHabitacionService;
 import com.uce.edu.service.IHotelService;
 
 @SpringBootApplication
@@ -17,6 +18,9 @@ public class Pa2U2P5JjApplication implements CommandLineRunner {
 
 	@Autowired
 	private IHotelService hotelService;
+	
+	@Autowired
+	private IHabitacionService habitacionService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5JjApplication.class, args);
@@ -25,27 +29,43 @@ public class Pa2U2P5JjApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-
+		
 		Hotel hotel = new Hotel();
-		hotel.setDireccion("Colon");
-		hotel.setNombre("Marriot");
-
+		hotel.setDireccion("Orellana");
+		hotel.setNombre("Mercurie");
+		
 		Habitacion h1 = new Habitacion();
-		h1.setClase("Económica");
-		h1.setNumero("A1");
+		h1.setClase("Premiun");
+		h1.setNumero("71");
 		h1.setHotel(hotel);
-
+		
+		
 		Habitacion h2 = new Habitacion();
-		h2.setClase("Presidencial");
-		h2.setNumero("A2");
+		h2.setClase("Duplex");
+		h2.setNumero("10");
 		h2.setHotel(hotel);
-
+		
 		List<Habitacion> habitaciones = new ArrayList<>();
 		habitaciones.add(h1);
 		habitaciones.add(h2);
-
+		
 		hotel.setHabitaciones(habitaciones);
-
+		
 		this.hotelService.guardar(hotel);
+		
+		Hotel hot = this.hotelService.buscar(2);
+		System.out.println(hot);
+		
+		Habitacion hab = this.habitacionService.buscar(6);
+		System.out.println(hab);
+		
+		hotel.setNombre("Hilton");
+		this.hotelService.actualizar(hotel);
+		
+		h1.setClase("Presidencial");
+		this.habitacionService.actualizar(h1);
+		
+		this.habitacionService.eliminar(11);
+		this.hotelService.eliminar(5);
 	}
 }
