@@ -1,5 +1,5 @@
 package com.uce.edu.repository.modelo;
-
+/*
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
@@ -14,3 +14,4 @@ public class AutorLibro {
 	private Libro2 libro2;
 	
 }
+*/

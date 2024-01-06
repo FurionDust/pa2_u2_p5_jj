@@ -1,16 +1,13 @@
 package com.uce.edu.repository.modelo;
-
-import java.util.ArrayList;
+/*
 import java.util.List;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
-
+/*
 @Entity
 @Table(name = "autor2")
 //principal
@@ -27,8 +24,9 @@ public class Autor2 {
 
 	@Column(name = "auto_nacionalidad")
 	private String nacionalidad;
-	
-	private List<AutorLibro> autoresLibros; 
+
+	private List<AutorLibro> autoresLibros;
+
 	// GET Y SET
 	public Integer getId() {
 		return id;
@@ -53,5 +51,5 @@ public class Autor2 {
 	public void setNacionalidad(String nacionalidad) {
 		this.nacionalidad = nacionalidad;
 	}
-
 }
+*/
