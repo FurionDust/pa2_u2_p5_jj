@@ -1,7 +1,9 @@
 package com.uce.edu;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +11,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.repository.modelo.Autor;
+import com.uce.edu.repository.modelo.Autor2;
+import com.uce.edu.repository.modelo.AutorLibro;
 import com.uce.edu.repository.modelo.Libro;
+import com.uce.edu.repository.modelo.Libro2;
 import com.uce.edu.service.IAutorService;
 import com.uce.edu.service.ILibroService;
 
@@ -31,98 +35,40 @@ public class Pa2U2P5JjApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
-		//------------------------------------------------------------//
-		//					UN LIBRO CON VARIOS AUTORES				  //
-		//------------------------------------------------------------//
-		
-		
-		//Creo un libro
-		Libro lib1 = new Libro();
+		Libro2 lib1 = new Libro2();
 		lib1.setFechaPublicacion(LocalDateTime.now());
-		lib1.setTitulo("Harry Potter");
-		//Creo sus autores
-		Autor autor1 = new Autor();
-		autor1.setNacionalidad("Colombiano");
-		autor1.setNombre("José Jiménez");
+		lib1.setTitulo("Harry Potter 2");
 		
-		Autor autor2 = new Autor();
-		autor2.setNacionalidad("Ecuatoriano");
-		autor2.setNombre("Alejandro Loor");
+		Autor2 autor1 = new Autor2();
+		autor1.setNacionalidad("Colombiano 2");
+		autor1.setNombre("José Jiménez 2");
 		
-		Autor autor3 = new Autor();
-		autor3.setNacionalidad("Peruano");
-		autor3.setNombre("Juan Quispe");
+		Autor2 autor2 = new Autor2();
+		autor2.setNacionalidad("Ecuatoriano 2");
+		autor2.setNombre("Alejandro Loor 2");
 		
-		
-		Set<Autor> autores = new HashSet<Autor>();
+		Set<Autor2> autores = new HashSet<Autor2>();
 		autores.add(autor1);
 		autores.add(autor2);
-		autores.add(autor3);
 		
-		lib1.setAutores(autores);
-		
-		Set<Libro> libros1 = new HashSet<Libro>();
-		libros1.add(lib1);
-		
-		autor1.setLibros(libros1);
-		autor2.setLibros(libros1);
-		autor3.setLibros(libros1);
-		
-		this.iLibroService.guardar(lib1);
+		AutorLibro autorLibro1 = new AutorLibro();
+		autorLibro1.setLibro2(lib1);
+		autorLibro1.setAutor2(autor1);
+		autorLibro1.setFecha(LocalDateTime.now());
 
-		Libro librover = this.iLibroService.buscar(1);
-		System.out.println(librover+" "+autores);
+		AutorLibro autorLibro2 = new AutorLibro();
+		autorLibro2.setLibro2(lib1);
+		autorLibro2.setAutor2(autor2);
+		autorLibro2.setFecha(LocalDateTime.now());
 		
-		lib1.setTitulo("Maquinita Espacial");
+		List<AutorLibro> lista = new ArrayList<>();
+		lista.add(autorLibro1);
+		lista.add(autorLibro2);
 		
-		this.iLibroService.actualizar(lib1);
-		
-		this.iLibroService.eliminar(1);
+		lib1.setAutoresLibros(lista);
 
-		
-		//------------------------------------------------------------//
-		//					UN AUTOR CON VARIOS LIBROS				  //
-		//------------------------------------------------------------//
-		
-		Autor autor4 = new Autor();
-		autor4.setNacionalidad("Español");
-		autor4.setNombre("Juan Carlos");
-		
-		Libro lib2 = new Libro();
-		lib2.setFechaPublicacion(LocalDateTime.now());
-		lib2.setTitulo("La calabaza Mágica");
-		
-		Libro lib3 = new Libro();
-		lib3.setFechaPublicacion(LocalDateTime.now());
-		lib3.setTitulo("El principito");
-		
-		Libro lib4 = new Libro();
-		lib4.setFechaPublicacion(LocalDateTime.now());
-		lib4.setTitulo("Los miserables");
-
-		Set<Autor> autores4 = new HashSet<Autor>();
-		autores4.add(autor4);
-		
-		lib2.setAutores(autores4);
-		lib3.setAutores(autores4);
-		lib4.setAutores(autores4);
-
-		
-		Set<Libro> libros2 = new HashSet<Libro>();
-		libros2.add(lib2);
-		libros2.add(lib3);
-		libros2.add(lib4);
-		
-		autor4.setLibros(libros2);
-		
-		Autor autorver= this.autorService.buscar(4);
-		
-		System.out.println(autorver);
-		
-		autor4.setNombre("Leonidas Mera");
-		
-		this.autorService.actualizar(autor4);
-		
-		this.autorService.eliminar(4);
+		//this.iLibroService.guardar(lib1);
+		Libro libro = this.iLibroService.buscarPorNombre("Java");
+		System.out.println(libro);
 	}
 }
