@@ -25,6 +25,8 @@ public class Ciudadano {
 	private String nombre;
 	@Column(name = "ciud_apellido")
 	private String apellido;
+	@Column(name ="ciud_cedula")
+	private String cedula;
 	
 	@OneToOne(mappedBy = "ciudadano",cascade = CascadeType.ALL) // se pone algo porque es la master
 	private Empleado empleado;
@@ -61,10 +63,20 @@ public class Ciudadano {
 		this.empleado = empleado;
 	}
 
+	public String getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
+
 	@Override
 	public String toString() {
-		return "Ciudadano [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", empleado=" + empleado + "]";
+		return "Ciudadano [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula
+				+ ", empleado=" + empleado + "]";
 	}
+
 
 	
 }

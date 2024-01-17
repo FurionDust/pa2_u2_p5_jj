@@ -72,6 +72,7 @@ public class LibroRepositoryImpl implements ILibroRepository {
 		return (List<Libro>) myQuery.getResultList();
 	}
 
+
 	@Override
 	public Libro seleccionarPorTitulo(String titulo) {
 		// TODO Auto-generated method stub
