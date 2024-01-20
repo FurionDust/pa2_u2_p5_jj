@@ -59,4 +59,20 @@ public class CiudadanoRepositoryImpl implements ICiudadanoRepository{
 		return (Ciudadano) myQuery.getSingleResult();
 	}
 
+	@Override
+	public Ciudadano buscarPorNombre(String nombre) {
+		// TODO Auto-generated method stub
+		TypedQuery<Ciudadano> myQuery = this.entityManager.createQuery("SELECT c FROM Ciudadano c WHERE c.nombre =:nombre",Ciudadano.class);
+		myQuery.setParameter("nombre",nombre);
+		return myQuery.getSingleResult();
+	}
+
+	@Override
+	public Ciudadano buscarPorApellido(String apellido) {
+		// TODO Auto-generated method stub
+		Query myQuery = this.entityManager.createNativeQuery("SELECT * FROM ciudadano c WHERE c.ciud_apellido =:apellido",Ciudadano.class);
+		myQuery.setParameter("apellido", apellido);
+		return (Ciudadano) myQuery.getSingleResult();
+	}
+
 }

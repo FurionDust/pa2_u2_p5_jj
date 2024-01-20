@@ -21,7 +21,11 @@ public class Alumno {
 	private Integer id;
 	@Column(name = "alum_nombre")
 	private String nombre;
-
+	@Column(name = "alum_apellido")
+	private String apellido;
+	@Column(name = "alum_fecha_matricula")
+	private String fechaMatricula;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -38,10 +42,28 @@ public class Alumno {
 		this.nombre = nombre;
 	}
 
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public String getFechaMatricula() {
+		return fechaMatricula;
+	}
+
+	public void setFechaMatricula(String fechaMatricula) {
+		this.fechaMatricula = fechaMatricula;
+	}
+
 	@Override
 	public String toString() {
-		return "Alumno [id=" + id + ", nombre=" + nombre + "]";
+		return "Alumno [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaMatricula="
+				+ fechaMatricula + "]";
 	}
+
 
 	
 }

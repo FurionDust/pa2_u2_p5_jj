@@ -1,5 +1,7 @@
 package com.uce.edu.service;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +36,18 @@ public class AlumnoServiceImpl implements IAlumnoService {
 	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
 		this.alumnoRepository.eliminar(id);
+	}
+
+	@Override
+	public Alumno buscarPorNombre(String nombre) {
+		// TODO Auto-generated method stub
+		return this.alumnoRepository.seleccionarPorNombre(nombre);
+	}
+
+	@Override
+	public Alumno buscarPorFecha(LocalDateTime fechaMatricula) {
+		// TODO Auto-generated method stub
+		return this.alumnoRepository.seleccionarPorFecha(fechaMatricula);
 	}
 
 }

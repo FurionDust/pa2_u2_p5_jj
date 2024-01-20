@@ -16,7 +16,8 @@ public class Avion {
 
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_avion")
 	@SequenceGenerator(name = "seq_avion", sequenceName = "seq_avion", allocationSize = 1)
-
+	@Column(name = "avi_id")
+	private Integer id;
 	@Column(name = "avi_numeroVuelo")
 	private Integer numeroVuelo;
 	@Column(name = "avi_aerolinea")
@@ -29,6 +30,16 @@ public class Avion {
 	private String horaSalida;
 	@Column(name = "avi_horaLlegada")
 	private String horaLlegada;
+
+	
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public Integer getNumeroVuelo() {
 		return numeroVuelo;
@@ -78,4 +89,11 @@ public class Avion {
 		this.horaLlegada = horaLlegada;
 	}
 
+	@Override
+	public String toString() {
+		return "Avion [id=" + id + ", numeroVuelo=" + numeroVuelo + ", aerolinea=" + aerolinea + ", capacidad="
+				+ capacidad + ", ruta=" + ruta + ", horaSalida=" + horaSalida + ", horaLlegada=" + horaLlegada + "]";
+	}
+
+	
 }

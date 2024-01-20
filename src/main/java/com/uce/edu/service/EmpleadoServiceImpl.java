@@ -1,5 +1,8 @@
 package com.uce.edu.service;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +37,18 @@ public class EmpleadoServiceImpl implements IEmpleadoService{
 	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
 		this.empleadoRepository.eliminar(id);
+	}
+
+	@Override
+	public Empleado buscarPorSalario(BigDecimal salario) {
+		// TODO Auto-generated method stub
+		return this.empleadoRepository.seleccionarPorSalario(salario);
+	}
+
+	@Override
+	public Empleado buscarPorFecha(LocalDateTime fechaIngreso) {
+		// TODO Auto-generated method stub
+		return this.empleadoRepository.seleccionarPorFecha(fechaIngreso);
 	}
 
 }

@@ -19,7 +19,7 @@ public class CuentaBancaria {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_cuentaBancaria")
 	@SequenceGenerator(name = "seq_cuentaBancaria", sequenceName = "seq_cuentaBancaria", allocationSize = 1)
 
-	@Column(name = "cb_numeroCuenta")
+	@Column(name = "cb_numero_cuenta")
 	private Integer numeroCuenta;
 	@Column(name = "cb_saldo")
 	private BigDecimal saldo;

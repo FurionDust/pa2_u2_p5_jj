@@ -1,11 +1,15 @@
 package com.uce.edu.repository;
 
+import java.time.LocalDateTime;
+
 import org.springframework.stereotype.Repository;
 
 import com.uce.edu.repository.modelo.Alumno;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -38,6 +42,22 @@ public class AlumnoRepository implements IAlumnoRepository {
 		// TODO Auto-generated method stub
 		Alumno alum = this.seleccionar(id);
 		this.entityManager.remove(alum);
+	}
+
+	@Override
+	public Alumno seleccionarPorNombre(String nombre) {
+		// TODO Auto-generated method stub
+		TypedQuery<Alumno> myQuery = this.entityManager.createQuery("SELECT a FROM Alumno a WHERE a.nombre =:nombre",Alumno.class);
+		myQuery.setParameter("nombre", nombre);
+		return myQuery.getSingleResult();
+	}
+
+	@Override
+	public Alumno seleccionarPorFecha(LocalDateTime fechaMatricula) {
+		// TODO Auto-generated method stub
+		Query myQuery = this.entityManager.createNativeQuery("SELECT * FROM alumno a WHERE a.alum_fecha_matricula <=:fecha",Alumno.class);
+		myQuery.setParameter("fecha", fechaMatricula);
+		return (Alumno) myQuery.getSingleResult();
 	}
 
 }

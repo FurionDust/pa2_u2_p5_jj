@@ -17,5 +17,8 @@ public interface ICiudadanoRepository {
 	
 	public Ciudadano seleccionarPorCedulaCiu(String cedula);
 	
-
+	public Ciudadano buscarPorNombre(String nombre);
+	
+	public Ciudadano buscarPorApellido(String apellido);
+	
 }

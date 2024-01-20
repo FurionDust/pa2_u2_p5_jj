@@ -1,5 +1,7 @@
 package com.uce.edu.service;
 
+import java.time.LocalDateTime;
+
 import com.uce.edu.repository.modelo.Alumno;
 
 public interface IAlumnoService {
@@ -12,4 +14,8 @@ public interface IAlumnoService {
 	public void actualizar(Alumno alumno);
 
 	public void eliminar(Integer id);
+	
+	public Alumno buscarPorNombre(String nombre);
+	
+	public Alumno buscarPorFecha(LocalDateTime fechaMatricula);
 }

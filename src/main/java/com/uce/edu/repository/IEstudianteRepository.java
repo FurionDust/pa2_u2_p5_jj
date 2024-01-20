@@ -1,5 +1,8 @@
 package com.uce.edu.repository;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 import com.uce.edu.repository.modelo.Estudiante;
 
 public interface IEstudianteRepository {
@@ -13,4 +16,5 @@ public interface IEstudianteRepository {
 
 	public void eliminar(Integer id);
 
+	public List<Estudiante> seleccionarPorFecha(LocalDateTime fechaNacimiento);
 }
