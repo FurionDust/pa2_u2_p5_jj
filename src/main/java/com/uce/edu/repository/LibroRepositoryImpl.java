@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.uce.edu.repository.modelo.Ciudadano;
 import com.uce.edu.repository.modelo.Libro;
 import com.uce.edu.repository.modelo.Libro2;
 
@@ -13,6 +14,10 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -106,6 +111,36 @@ public class LibroRepositoryImpl implements ILibroRepository {
 		TypedQuery<Libro> myQuery =this.entityManager.createNamedQuery("Libro.queryBuscarPorFecha",Libro.class);
 		myQuery.setParameter("fecha", fechaPublicacion);
 		return myQuery.getResultList();
+	}
+
+	@Override
+	public Libro seleccionarPorCriteria(String titulo) {
+		// SELECT c FROM Ciudadano c WHERE c.apellido = :variable --->SQL normal
+		// 0.Creamos una instancia de la interfaz CriteriaBuilder a partir de un Entity
+		// Manager
+		CriteriaBuilder myCriteriaBuilder = this.entityManager.getCriteriaBuilder();
+
+		// 1.-Determianmos el tipo de retorno que va a tener mi Consulta
+		CriteriaQuery<Libro> myCriteriaQuery = myCriteriaBuilder.createQuery(Libro.class);
+
+		// 2.-Construir el SQL
+		// 2.1 Determinamos elfrom utilizando una interfaz conocida como (Root)
+		// Nota: no necesariamnete el from es igual al tipo de retorno
+		// SELECT c.empleado FROM Ciudadano c WHERE c.empleado.nombre = :dato
+		Root<Libro> myFrom = myCriteriaQuery.from(Libro.class);// FROM Ciudadano
+
+		// 2.2 Construir las condiciones (WHERE) del SQL
+		// En criteria API Query las condiciones se las conoce como "Predicate" en
+		// español como Predicado
+		Predicate condicionTitulo = myCriteriaBuilder.equal(myFrom.get("titulo"), titulo);
+
+		// 3. Construimos el SQL final
+		myCriteriaQuery.select(myFrom).where(condicionTitulo);
+
+		// 4. Ejecutamos la consulta con un typedQuery
+		TypedQuery<Libro> myQuery = this.entityManager.createQuery(myCriteriaQuery);
+
+		return myQuery.getSingleResult();
 	}
 
 }

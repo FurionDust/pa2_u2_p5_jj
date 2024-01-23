@@ -18,4 +18,6 @@ public interface IAvionService {
 	public Avion buscarPorRuta(String ruta);
 	
 	public Avion buscarPorAerolinea(String aerolinea);
+	
+	public Avion buscarCriteria(String aerolinea, String horaSalida, String horaLlegada);
 }

@@ -20,4 +20,5 @@ public interface IEmpleadoService {
 	
 	public Empleado buscarPorFecha(LocalDateTime fechaIngreso);
 
+	public Empleado buscarPorCriteria(BigDecimal salario);
 }

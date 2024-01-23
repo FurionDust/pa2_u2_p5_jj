@@ -13,4 +13,5 @@ public interface IAutorRepository {
 
 	public void eliminar(Integer id);
 
+	public Autor seleccionarPorCriteria(String nombre,String nacionalidad);
 }

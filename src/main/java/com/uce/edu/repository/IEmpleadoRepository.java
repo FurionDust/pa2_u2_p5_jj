@@ -20,6 +20,6 @@ public interface IEmpleadoRepository {
 	
 	public Empleado seleccionarPorFecha(LocalDateTime fechaIngreso);
 	
-	
+	public Empleado seleccionarPorCriteria(BigDecimal salario);
 
 }

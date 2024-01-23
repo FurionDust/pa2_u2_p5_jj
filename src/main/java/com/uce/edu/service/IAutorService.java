@@ -13,5 +13,6 @@ public interface IAutorService {
 
 	public void eliminar(Integer id);
 
+	public Autor buscarPorCriteria(String nombre,String nacionalidad);
 
 }

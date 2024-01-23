@@ -18,6 +18,8 @@ public interface IAvionRepository {
 	public Avion seleccionarPorRuta(String ruta);
 	
 	public Avion seleccionarPorAerolinea(String aerolinea);
+	
+	public Avion seleccionarCriteria(String aerolinea, String horaSalida, String horaLlegada);
 
 
 }

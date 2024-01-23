@@ -51,4 +51,10 @@ public class EmpleadoServiceImpl implements IEmpleadoService{
 		return this.empleadoRepository.seleccionarPorFecha(fechaIngreso);
 	}
 
+	@Override
+	public Empleado buscarPorCriteria(BigDecimal salario) {
+		// TODO Auto-generated method stub
+		return this.empleadoRepository.seleccionarPorCriteria(salario);
+	}
+
 }

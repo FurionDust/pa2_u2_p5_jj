@@ -10,16 +10,22 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.uce.edu.repository.modelo.Alumno;
+import com.uce.edu.repository.modelo.Autor;
 import com.uce.edu.repository.modelo.Avion;
 import com.uce.edu.repository.modelo.Ciudadano;
 import com.uce.edu.repository.modelo.Empleado;
 import com.uce.edu.repository.modelo.Estudiante;
+import com.uce.edu.repository.modelo.Hotel;
+import com.uce.edu.repository.modelo.Libro;
 import com.uce.edu.service.IAlumnoService;
+import com.uce.edu.service.IAutorService;
 import com.uce.edu.service.IAvionService;
 import com.uce.edu.service.ICiudadanoService;
 import com.uce.edu.service.IEmpleadoService;
 import com.uce.edu.service.IEstudianteService;
 import com.uce.edu.service.IHabitacionService;
+import com.uce.edu.service.IHotelService;
+import com.uce.edu.service.ILibroService;
 
 @SpringBootApplication
 public class Pa2U2P5JjApplication implements CommandLineRunner {
@@ -43,7 +49,12 @@ public class Pa2U2P5JjApplication implements CommandLineRunner {
 	private IHabitacionService habitacionService;
 	@Autowired
 	private IAvionService avionService;	
-	
+	@Autowired
+	private ILibroService iLibroService;
+	@Autowired
+	private IAutorService autorService;
+	@Autowired
+	private IHotelService hotelService;
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5JjApplication.class, args);
 	}
@@ -51,26 +62,25 @@ public class Pa2U2P5JjApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-
-		Ciudadano ciu = this.ciudadanoService.buscarPorApellido("Jimenez");
-		System.out.println(ciu);
-		//select c1_0.ciud_id,c1_0.ciud_apellido,c1_0.ciud_cedula,c1_0.ciud_nombre from ciudadano c1_0 where c1_0.ciud_nombre=?
-		Ciudadano ciu1 = this.ciudadanoService.buscarPorCriteria("Cristian", "Yepez", "1719608722");
-		System.out.println(ciu1);
-		// select c1_0.ciud_id,c1_0.ciud_apellido,c1_0.ciud_cedula,c1_0.ciud_nombre from ciudadano c1_0 where c1_0.ciud_apellido=?
-		Ciudadano ciu2 = this.ciudadanoService.buscarPorCriteria("Romina", "Guevara", "0519608728");
-		System.out.println(ciu2);
-		//select c1_0.ciud_id,c1_0.ciud_apellido,c1_0.ciud_cedula,c1_0.ciud_nombre from ciudadano c1_0 where c1_0.ciud_cedula=?
-		Ciudadano ciu3 = this.ciudadanoService.buscarPorCriteria("Romina", "Guevara", "0519608729");
-		System.out.println(ciu3);
-		
-		System.out.println("Criteria API Query And Or");
-		//select c1_0.ciud_id,c1_0.ciud_apellido,c1_0.ciud_cedula,c1_0.ciud_nombre from ciudadano c1_0 where c1_0.ciud_nombre=? or c1_0.ciud_apellido=?
-		Ciudadano ciu4 = this.ciudadanoService.buscarPorCriteriaAndOr("Cristian", "Yepez11", "1719608722");
-		System.out.println(ciu4);
-		//select c1_0.ciud_id,c1_0.ciud_apellido,c1_0.ciud_cedula,c1_0.ciud_nombre from ciudadano c1_0 where c1_0.ciud_nombre=? and c1_0.ciud_apellido=?
-		Ciudadano ciu5 = this.ciudadanoService.buscarPorCriteriaAndOr("Romina", "Guevara", "0519608728");
-		System.out.println(ciu5);
-		
+		//1
+		System.out.println("-------------------------------------------");
+		Avion av = this.avionService.buscarCriteria("Avianca", "11:00am", "15:30pm");
+		System.out.println(av);
+		System.out.println("-------------------------------------------");
+		//2
+		Libro lb = this.iLibroService.buscarPorCriteria("Harry Potter");
+		System.out.println(lb);
+		System.out.println("-------------------------------------------");
+		//3
+		Autor aut = this.autorService.buscarPorCriteria("Alejandro Loor", "Ecuatoriano");
+		System.out.println(aut);
+		System.out.println("-------------------------------------------");
+		//4
+		Empleado empl = this.empleadoService.buscarPorCriteria(new BigDecimal(450));
+		System.out.println(empl);
+		System.out.println("-------------------------------------------");
+		//5
+		Hotel hot = this.hotelService.buscarPorCriteriaAndOr("La posada", "Villaflora");
+		System.out.println(hot);
 	}
 }

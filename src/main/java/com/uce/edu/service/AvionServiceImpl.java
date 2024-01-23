@@ -1,3 +1,4 @@
+
 package com.uce.edu.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,12 @@ public class AvionServiceImpl implements IAvionService{
 	public Avion buscarPorAerolinea(String aerolinea) {
 		// TODO Auto-generated method stub
 		return this.avionRepository.seleccionarPorAerolinea(aerolinea);
+	}
+
+	@Override
+	public Avion buscarCriteria(String aerolinea, String horaSalida, String horaLlegada) {
+		// TODO Auto-generated method stub
+		return this.avionRepository.seleccionarCriteria(aerolinea, horaSalida, horaLlegada);
 	}
 
 }

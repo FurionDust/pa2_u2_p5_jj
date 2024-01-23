@@ -94,21 +94,7 @@ public class CiudadanoRepositoryImpl implements ICiudadanoRepository {
 		// 2.2 Construir las condiciones (WHERE) del SQL
 		// En criteria API Query las condiciones se las conoce como "Predicate" en
 		// español como Predicado
-		Predicate condicionApellido = myCriteriaBuilder.equal(myFrom.get("apellido"), apellido); // el primero pertenece
-																									// a que atributo se
-																									// le aplica la
-																									// condición este
-																									// caso apellido
-																									// pero es el
-																									// atributo que
-																									// corresponde a la
-																									// clase que
-																									// llamamos en el
-																									// Root, que luego
-																									// se compara con
-																									// otro valor que es
-																									// el que se recibe
-																									// por parámetro
+		Predicate condicionApellido = myCriteriaBuilder.equal(myFrom.get("apellido"), apellido);
 
 		// 3. Construimos el SQL final
 		myCriteriaQuery.select(myFrom).where(condicionApellido);
@@ -135,23 +121,24 @@ public class CiudadanoRepositoryImpl implements ICiudadanoRepository {
 		// 2.2 Construir las condiciones del (WHERE)
 
 		Predicate condicionGenerica = null;
-		
+
 		if (cedula.startsWith("17")) {
 			condicionGenerica = myCriteriaBuilder.equal(myFrom.get("nombre"), nombre);
 
 		} else if (cedula.startsWith("05")) {
-			condicionGenerica= myCriteriaBuilder.equal(myFrom.get("apellido"), apellido);
+			condicionGenerica = myCriteriaBuilder.equal(myFrom.get("apellido"), apellido);
 
 		} else {
-			condicionGenerica= myCriteriaBuilder.equal(myFrom.get("cedula"), cedula);
+			condicionGenerica = myCriteriaBuilder.equal(myFrom.get("cedula"), cedula);
 		}
-		//3. Construimos el SQL final
+		// 3. Construimos el SQL final
 		myCriteriaQuery.select(myFrom).where(condicionGenerica);
-		
+
 		TypedQuery<Ciudadano> myQuery = this.entityManager.createQuery(myCriteriaQuery);
 
 		return myQuery.getSingleResult();
 	}
+
 	@Override
 	public Ciudadano seleccionarPorCriteriaAndOr(String nombre, String apellido, String cedula) {
 		// TODO Auto-generated method stub
@@ -168,20 +155,20 @@ public class CiudadanoRepositoryImpl implements ICiudadanoRepository {
 		// 2.2 Construir las condiciones del (WHERE)
 
 		Predicate condicionTotal = null;
-		
+
 		Predicate condicionNombre = myCriteriaBuilder.equal(myFrom.get("nombre"), nombre);
-		
+
 		Predicate condicionApellido = myCriteriaBuilder.equal(myFrom.get("apellido"), apellido);
-		
+
 		if (cedula.startsWith("17")) {
-			condicionTotal = myCriteriaBuilder.or(condicionNombre,condicionApellido);
+			condicionTotal = myCriteriaBuilder.or(condicionNombre, condicionApellido);
 
 		} else if (cedula.startsWith("05")) {
-			condicionTotal= myCriteriaBuilder.and(condicionNombre,condicionApellido);
+			condicionTotal = myCriteriaBuilder.and(condicionNombre, condicionApellido);
 		}
-		//3. Construimos el SQL final
+		// 3. Construimos el SQL final
 		myCriteriaQuery.select(myFrom).where(condicionTotal);
-		
+
 		TypedQuery<Ciudadano> myQuery = this.entityManager.createQuery(myCriteriaQuery);
 
 		return myQuery.getSingleResult();
