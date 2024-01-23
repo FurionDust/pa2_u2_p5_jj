@@ -19,6 +19,13 @@ public interface ICiudadanoRepository {
 	
 	public Ciudadano buscarPorNombre(String nombre);
 	
-	public Ciudadano buscarPorApellido(String apellido);
+	public Ciudadano selecionarPorApellido(String apellido);
 	
+	
+	//Funcionalidad que cuando sea el ciudadano de pichincha busque por nombre
+	//Cuando sea de cotopaxi, lo busque por apellido
+	//cuando no sea ni de cotopaxi ni pichincha lo busque por cedula
+	public Ciudadano seleccionarPorCriteria(String nombre, String apellido,String cedula);
+	
+	public Ciudadano seleccionarPorCriteriaAndOr(String nombre, String apellido, String cedula);
 }

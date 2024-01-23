@@ -30,7 +30,7 @@ public class Pa2U2P5JjApplication implements CommandLineRunner {
 		//Declarar de una manera centralizada el query y se va a reutilizar desde las diferentes partes que se necesita a traves de un nombre
 		//
 	// Native(SQL PURO) 
-	// Criteria API
+	// Criteria API (SQL dinámico)
 	@Autowired
 	private ICiudadanoService ciudadanoService;
 	@Autowired
@@ -52,40 +52,25 @@ public class Pa2U2P5JjApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
-		System.out.println("Typed Query");
-		//1
-		Ciudadano ciud1 = this.ciudadanoService.buscarPorNombre("Alejandro");
-		System.out.println(ciud1);
-		//2
-		Alumno alum1 = this.alumnoService.buscarPorNombre("José");
-		System.out.println(alum1);
-		//3
-		Empleado empl = this.empleadoService.buscarPorSalario(new BigDecimal(450));
-		System.out.println(empl);
-		//4 
-		List<Estudiante> est = this.estudianteService.buscarPorFecha(LocalDateTime.of(2021, 1,1,7,15));
-		for(Estudiante estu :est) {
-			System.out.println(estu);	
-		}
-		//5
-		Avion avi = this.avionService.buscarPorNumeroVuelo(1);
-		System.out.println(avi);
-
-		System.out.println("Native Query");
-		//1
-		Ciudadano ciud2 = this.ciudadanoService.buscarPorApellido("Yepez");
-		System.out.println(ciud2);
-		//2
-		Alumno alum2 =this.alumnoService.buscarPorFecha(LocalDateTime.of(2023, 1,19,18,37));
-		System.out.println(alum2);
-		//3
-		Empleado empl2 =this.empleadoService.buscarPorFecha(LocalDateTime.of(2023, 1,19,18,37));
-		System.out.println(empl2);
-		//4
-		Avion av2 = this.avionService.buscarPorRuta("Quito-California");
-		System.out.println(av2);
-		//5
-		Avion av3 = this.avionService.buscarPorAerolinea("Iveria");
-		System.out.println(av3);
+		Ciudadano ciu = this.ciudadanoService.buscarPorApellido("Jimenez");
+		System.out.println(ciu);
+		//select c1_0.ciud_id,c1_0.ciud_apellido,c1_0.ciud_cedula,c1_0.ciud_nombre from ciudadano c1_0 where c1_0.ciud_nombre=?
+		Ciudadano ciu1 = this.ciudadanoService.buscarPorCriteria("Cristian", "Yepez", "1719608722");
+		System.out.println(ciu1);
+		// select c1_0.ciud_id,c1_0.ciud_apellido,c1_0.ciud_cedula,c1_0.ciud_nombre from ciudadano c1_0 where c1_0.ciud_apellido=?
+		Ciudadano ciu2 = this.ciudadanoService.buscarPorCriteria("Romina", "Guevara", "0519608728");
+		System.out.println(ciu2);
+		//select c1_0.ciud_id,c1_0.ciud_apellido,c1_0.ciud_cedula,c1_0.ciud_nombre from ciudadano c1_0 where c1_0.ciud_cedula=?
+		Ciudadano ciu3 = this.ciudadanoService.buscarPorCriteria("Romina", "Guevara", "0519608729");
+		System.out.println(ciu3);
+		
+		System.out.println("Criteria API Query And Or");
+		//select c1_0.ciud_id,c1_0.ciud_apellido,c1_0.ciud_cedula,c1_0.ciud_nombre from ciudadano c1_0 where c1_0.ciud_nombre=? or c1_0.ciud_apellido=?
+		Ciudadano ciu4 = this.ciudadanoService.buscarPorCriteriaAndOr("Cristian", "Yepez11", "1719608722");
+		System.out.println(ciu4);
+		//select c1_0.ciud_id,c1_0.ciud_apellido,c1_0.ciud_cedula,c1_0.ciud_nombre from ciudadano c1_0 where c1_0.ciud_nombre=? and c1_0.ciud_apellido=?
+		Ciudadano ciu5 = this.ciudadanoService.buscarPorCriteriaAndOr("Romina", "Guevara", "0519608728");
+		System.out.println(ciu5);
+		
 	}
 }
